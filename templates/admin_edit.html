@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post"> {% csrf_token %}
+        <input type="text"  value="{{ adminlar.ism }}" disabled>
+        <input type="text" value="{{ adminlar.ish_vaqti }}" name="ish_vaqti">
+        <button type="submit">Edit</button>
+    </form>
+    <h3>{{ adminlar.ism }}</h3>
+    <h3>{{ adminlar.ish_vaqti }}</h3>
+</body>
+</html>

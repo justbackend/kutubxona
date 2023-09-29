@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form method="post">{% csrf_token %}
+        {{ forma }}
+        <button>Qo'shish</button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Hamma Kitoblar</h1>
+    {% for kitob in kitoblar %}
+        <h3>{{ kitob }}</h3>
+        <h3>{{ kitob.sahifa }}</h3>
+        <button><a href="/kitob/{{ kitob.id }}">Edit</a></button>
+    {% endfor %}
+
+</body>
+</html>

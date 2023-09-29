@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br>
+<br>
+<br>
+    <form method="post">{% csrf_token %}
+        <input type="text" placeholder="ism kiriting" name="ism">
+        <input type="number" placeholder="kurs ni kiriting" name="kurs">
+        <input type="number" placeholder="kitoblar_soni" name="kitoblar_soni">
+        <button type="submit">Saqlash</button>
+
+    </form>
+    <h1>Talabalar</h1>
+    <form method="get">
+        <input placeholder="Ism kiriting" name="ism">
+        <button type="submit">Qidirish</button>
+    </form>
+
+    {% for talaba in talabalar %}
+        <h3><a> {{ talaba.id }}/">{{ talaba.ism }}</h3>
+        <h3>{{ talaba.kurs }}</h3>
+        <button><a href="/talaba_edit/{{ talaba.id }}/">Tahrirlash</a></button>
+        <br>
+    {% endfor %}
+</body>
+</html>

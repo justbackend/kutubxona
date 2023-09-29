@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post"> {% csrf_token %}
+        <input type="date" value="{{ recordlar.qaytarish_sana }}" name="qaytarish_sana">
+        <button type="submit">Edit</button>
+    </form>
+    <h4>{{ recordlar.qaytarish_sana }}</h4>
+</body>
+</html>

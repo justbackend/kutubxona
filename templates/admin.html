@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        {{ forma }}
+        <button type="submit">Qo'shish</button>
+    </form>
+    <h1>Adminlar</h1>
+    {% for admin in adminlar %}
+        <h3><a href="/adminka/{{ admin.id }}/">{{ admin.ism }} : {{ admin.ish_vaqti }}</a></h3>
+    {% endfor %}
+</body>
+</html>

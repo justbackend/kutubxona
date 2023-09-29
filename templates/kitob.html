@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post"> {% csrf_token %}
+        <input type="text" placeholder="nom" name="nom" disabled value="">
+        <input type="text" placeholder="janr" name="janr" disabled value="">
+        <input type="number" placeholder="sahifa" name="sahifa">
+        <input type="text" disabled value="">
+        <button type="submit">Save</button>
+    </form>
+
+</body>
+</html>

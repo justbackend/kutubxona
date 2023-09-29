@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        {{ forma }}
+        <button>Qo'shish</button>
+    </form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+    <form method="post">{% csrf_token %}
+        <input type="text" placeholder="ism kiriting" name="ism">
+        <select name="jins">
+            <option value="Erkak">Erkak</option>
+            <option value="Ayol">Ayol</option>
+        </select>
+        <input type="number" placeholder="kitoblar sonini kiriting" name="kitob_soni">
+        <input type="date" name="tugilgan_yil">
+        <input type="checkbox" name="tirik">
+        <button type="submit">Qo'shish</button>
+    </form>
+    <h1>Mualliflar</h1>
+        <form method="get">
+            <input placeholder="ism kiriting" name="ism">
+            <button type="submit">Qidirish</button>
+
+        </form>
+        {% for muallif in mualliflar %}
+
+            <h1><a href="/muallif_edit/{{ muallif.id }}/">{{ muallif }}</a></h1>
+            <button><a href="/muallif/{{ muallif.id }}/">O'chirish</a></button>
+            <br>
+
+        {% endfor %}
+
+</body>
+</html>

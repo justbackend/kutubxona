@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        <input type="text" disabled value="{{ mualliflar.ism }}">
+        <input type="text" disabled value="{{ mualliflar.jins }}">
+        <input type="number" value="{{ mualliflar.kitob_soni }}" name="kitob_soni">
+        <input type="date" disabled value="{{ mualliflar.tugilgan_yil }}">
+        <input type="text" disabled value="{{ mualliflar.tirik }} ">
+        <label id="coding">Tirik: </label>
+        <input type="checkbox" id="coding" name="tirik" value="{{ mualliflar.tirik }}" />
+        <button type="submit">Edit</button>
+    </form>
+    <h3>{{ mualliflar.ism }}</h3>
+    <h3>{{ mualliflar.kitob_soni }}</h3>
+    <h3>{{ mualliflar.tirik }}</h3>
+</body>
+</html>
