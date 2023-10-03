@@ -22,5 +22,7 @@ urlpatterns = [
     path('adminka/<int:pk>/', admin_edit),
     path('muallif_edit/<int:pk>/', muallif_edit),
     path('record_edit/<int:pk>/', record_edit),
+    path('login/', login_view),
+    path("logout/", logout_view),
 
 ]

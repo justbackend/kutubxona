@@ -1,6 +1,11 @@
 from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
+from django.contrib.auth import authenticate, login, logout
+
+# User = get_user_model()
+
+
 from django.http import HttpResponse
 # Create your views here.
 
@@ -62,26 +67,30 @@ def names_with_a(request):
     return render(request, "names_with_a.html", content)
 
 def records(request):
-    if request.method == "POST":
-        forma = RecordForm(request.POST)
-        if forma.is_valid():
-            forma.save()
-        return redirect("/records/")
-    ism = request.GET.get("ism")
-    if ism:
-        natija = Record.objects.filter(talaba__ism__contains=ism)
+    if request.user.is_authenticated:
+
+        if request.method == "POST":
+            forma = RecordForm(request.POST)
+            if forma.is_valid():
+                forma.save()
+            return redirect("/records/")
+        ism = request.GET.get("ism")
+        if ism:
+            natija = Record.objects.filter(talaba__ism__contains=ism)
+        else:
+            natija = Record.objects.all()
+
+        content = {
+            "talabalar": Talaba.objects.all(),
+            "kitoblar": Kitob.objects.all(),
+            "adminlar": Admin.objects.all(),
+            "records": natija,
+            "forma": RecordForm()
+        }
+
+        return render(request, "records.html", content)
     else:
-        natija = Record.objects.all()
-
-    content = {
-        "talabalar": Talaba.objects.all(),
-        "kitoblar": Kitob.objects.all(),
-        "adminlar": Admin.objects.all(),
-        "records": natija,
-        "forma": RecordForm()
-    }
-
-    return render(request, "records.html", content)
+        return redirect("/login/")
 
 def alive_writers(request):
     content = {
@@ -204,6 +213,22 @@ def record_edit(request, pk):
 
     return render(request, "record_edit.html", content)
 
+def login_view(request):
+    if request.method == "POST":
+        user = authenticate(
+            username=request.POST['login'],
+            password=request.POST['parol']
+        )
+        if user is None:
+            return redirect("/login/")
+        login(request, user)
+        return redirect("/muallif/")
+
+    return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect("/login/")
 
 
 
